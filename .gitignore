@@ -1,0 +1,9 @@
+tmp
+*.class
+*.pyc
+*.pyo
+build/
+*.log
+*.build
+.settings
+

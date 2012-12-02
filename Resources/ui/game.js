@@ -9,10 +9,12 @@ module.exports = function() {
 	
 	var win = Ti.UI.createWindow($$.win);
 	win.opacity = 0;
+	win.backgroundImage = 'ui/images/bg.jpg'
 	
 	var close = Ti.UI.createButton({
-		title:'cerrar',
-		top:5,right:5
+		title:'Cerrar',
+		top:5,right:5,
+		backgroundImage:'none'
 	});
 	win.add(close);
 	close.addEventListener('click', function() {
@@ -27,6 +29,13 @@ module.exports = function() {
 	});
 	
 	win.add(points);
+	
+	var you = Ti.UI.createImageView({
+		image:'ui/images/you.png',
+		left:10,
+		top:10
+	});
+	win.add(you);
 	
 	var fish = new MyFish();
 	
@@ -66,7 +75,7 @@ module.exports = function() {
 		
 		win.add(enemy);
 		
-	}, 1500);
+	}, 500);
 	
 	win.addEventListener('close', function() {
 		clearInterval(interval);

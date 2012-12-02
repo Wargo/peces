@@ -8,23 +8,35 @@ module.exports = function(args) {
 	var lose_function = args.cb_lose;
 	var eat_function = args.cb_eat;
 	
-	var size = 15 + level * 10;
+	var size = 25 + level * 10;
 	var speed = 4 + level * 1;
+	
+	if (Ti.Platform.osname == 'ipad') {
+		speed *= 2;
+	}
+	
+	var side = Math.floor(Math.random() * 2);
+	
 	switch (level) {
 		case 0:
 			var color = 'red';
+			var image = 'ui/images/enemy1_' + side + '.png';
 			break;
 		case 1:
 			var color = 'purple';
+			var image = 'ui/images/enemy2_' + side + '.png';
 			break;
 		case 2:
 			var color = 'green';
+			var image = 'ui/images/enemy3_' + side + '.png';
 			break;
 		case 3:
 			var color = 'yellow';
+			var image = 'ui/images/enemy4_' + side + '.png';
 			break;
 		case 4:
 			var color = 'orange';
+			var image = 'ui/images/enemy5_' + side + '.png';
 			break;
 	}
 	
@@ -35,10 +47,9 @@ module.exports = function(args) {
 		height:size,
 		top:random,
 		left:-1 * size,
-		backgroundColor:color
+		//backgroundColor:color
+		backgroundImage:image
 	});
-	
-	var side = Math.floor(Math.random() * 2);
 	
 	switch (side) {
 		case 0:

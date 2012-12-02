@@ -4,10 +4,11 @@ var $$ = require(Mods.styles);
 
 module.exports = function() {
 	
-	var size = 20;
+	var size = 30;
 	
 	var fish = Ti.UI.createView({
-		backgroundColor:'blue',
+		//backgroundColor:'blue',
+		backgroundImage:'ui/images/player_0.png',
 		top:Ti.Platform.displayCaps.platformHeight / 2 - size / 2,
 		left:Ti.Platform.displayCaps.platformWidth / 2 - size / 2,
 		width:size,
@@ -48,6 +49,12 @@ module.exports = function() {
 			}
 			if (left <= 0) {
 				left = 0;
+			}
+			
+			if (left > fish.left) {
+				fish.backgroundImage = 'ui/images/player_0.png';
+			} else {
+				fish.backgroundImage = 'ui/images/player_1.png';
 			}
 			
 			fish.animate({

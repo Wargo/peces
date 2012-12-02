@@ -9,7 +9,7 @@ module.exports = function() {
 	
 	var win = Ti.UI.createWindow($$.win);
 	win.opacity = 0;
-	win.backgroundImage = 'ui/images/bg.jpg'
+	win.backgroundImage = 'ui/images/bg.jpg';
 	
 	var close = Ti.UI.createButton({
 		title:'Cerrar',
@@ -29,13 +29,6 @@ module.exports = function() {
 	});
 	
 	win.add(points);
-	
-	var you = Ti.UI.createImageView({
-		image:'ui/images/you.png',
-		left:10,
-		top:10
-	});
-	win.add(you);
 	
 	var fish = new MyFish();
 	

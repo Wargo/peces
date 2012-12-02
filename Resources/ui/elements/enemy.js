@@ -38,6 +38,18 @@ module.exports = function(args) {
 		backgroundColor:color
 	});
 	
+	var side = Math.floor(Math.random() * 2);
+	
+	switch (side) {
+		case 0:
+			enemy.left = -1 * size;
+			break;
+		case 1:
+			enemy.left = Ti.Platform.displayCaps.platformWidth + 1;
+			speed *= -1;
+			break;
+	}
+	
 	move(enemy.left);
 	
 	function move(left) {
@@ -59,7 +71,7 @@ module.exports = function(args) {
 				duration:50
 			}, function() {
 				enemy.left = left + speed;
-				if (enemy.left > Ti.Platform.displayCaps.platformWidth) {
+				if (enemy.left > Ti.Platform.displayCaps.platformWidth || enemy.left < -1 * size - 1) {
 					enemy.parent.remove(enemy);
 					Ti.API.info('enemy out');
 				} else {

@@ -9,7 +9,7 @@ module.exports = function(args) {
 	var eat_function = args.cb_eat;
 	
 	var size = 15 + level * 10;
-	var speed = 5 + level * 2;
+	var speed = 4 + level * 1;
 	switch (level) {
 		case 0:
 			var color = 'red';
@@ -28,7 +28,7 @@ module.exports = function(args) {
 			break;
 	}
 	
-	var random = Math.floor((Math.random() * (320 - size)));
+	var random = Math.floor((Math.random() * (Ti.Platform.displayCaps.platformHeight - size)));
 	
 	var enemy = Ti.UI.createView({
 		width:size,
@@ -54,7 +54,7 @@ module.exports = function(args) {
 	
 	function move(left) {
 		
-		if (enemy.left > fish.left - 20 && enemy.left < fish.left + 20 && enemy.top > fish.top - 20 && enemy.top < fish.top + 20) {
+		if (enemy.left > fish.left - size && enemy.left < fish.left + fish.width && enemy.top > fish.top - size && enemy.top < fish.top + fish.height) {
 			
 			if (enemy.width < fish.width) {
 				enemy.parent.remove(enemy);
@@ -68,7 +68,7 @@ module.exports = function(args) {
 		
 			enemy.animate({
 				left: left + speed,
-				duration:50
+				duration:10
 			}, function() {
 				enemy.left = left + speed;
 				if (enemy.left > Ti.Platform.displayCaps.platformWidth || enemy.left < -1 * size - 1) {

@@ -36,15 +36,15 @@ module.exports = function() {
 			top = fish.top - (last_x * speed);
 			left = fish.left - (last_y * speed);
 			
-			if (top > 320 - size) {
-				top = 320 - size;
+			if (top > Ti.Platform.displayCaps.platformHeight - fish.width) {
+				top = Ti.Platform.displayCaps.platformHeight - fish.width;
 			}
 			if (top <= 0) {
 				top = 0;
 			}
 			
-			if (left >= Ti.Platform.displayCaps.platformWidth - size) {
-				left = Ti.Platform.displayCaps.platformWidth - size;
+			if (left >= Ti.Platform.displayCaps.platformWidth - fish.width) {
+				left = Ti.Platform.displayCaps.platformWidth - fish.width;
 			}
 			if (left <= 0) {
 				left = 0;

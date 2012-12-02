@@ -43,6 +43,10 @@ module.exports = function() {
 			fish.width = parseInt(fish.width) + 10;
 			fish.height = parseInt(fish.height) + 10;
 			points.text = 0;
+			if (fish.width == 60) {
+				alert('Win!');
+				win.close();
+			}
 		} else {
 			points.text = currentpoints;
 		}
@@ -62,7 +66,7 @@ module.exports = function() {
 		
 		win.add(enemy);
 		
-	}, 2000);
+	}, 1500);
 	
 	win.addEventListener('close', function() {
 		clearInterval(interval);

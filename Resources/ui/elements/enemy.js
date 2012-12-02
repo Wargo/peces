@@ -2,7 +2,11 @@
 var Mods = require('/modules');
 var $$ = require(Mods.styles);
 
-module.exports = function(level, fish, lose_function) {
+module.exports = function(args) {
+	var level = args.level;
+	var fish = args.fish;
+	var lose_function = args.cb_lose;
+	var eat_function = args.cb_eat;
 	
 	var size = 15 + level * 10;
 	var speed = 5 + level * 2;
@@ -12,6 +16,15 @@ module.exports = function(level, fish, lose_function) {
 			break;
 		case 1:
 			var color = 'purple';
+			break;
+		case 2:
+			var color = 'green';
+			break;
+		case 3:
+			var color = 'yellow';
+			break;
+		case 4:
+			var color = 'orange';
 			break;
 	}
 	
@@ -34,6 +47,7 @@ module.exports = function(level, fish, lose_function) {
 			if (enemy.width < fish.width) {
 				enemy.parent.remove(enemy);
 				Ti.API.info('enemy down!');
+				eat_function(level);
 			} else {
 				lose_function();
 			}

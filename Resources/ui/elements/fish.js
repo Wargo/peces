@@ -23,13 +23,16 @@ module.exports = function() {
 	var left = 0;
 	var offset = 10;
 	var filter = 1;
-	var speed = 100;
+	var startSpeed = 130;
+	var speed = 0;
 	
 	Ti.Accelerometer.addEventListener('update', function(e) {
 		
 		now = new Date().getTime();
 		
 		if (lastTime + offset < now) {
+			
+			speed = startSpeed - fish.width * 1.5;
 			
 			last_x = e.x * filter + last_x * (1 - filter);
 			last_y = e.y * filter + last_y * (1 - filter);

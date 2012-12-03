@@ -9,7 +9,7 @@ module.exports = function(args) {
 	var eat_function = args.cb_eat;
 	
 	var size = 25 + level * 10;
-	var speed = 4 + level * 1;
+	var speed = 5 + level * 1.1;
 	
 	if (Ti.Platform.osname == 'ipad') {
 		speed *= 2;
@@ -47,7 +47,7 @@ module.exports = function(args) {
 		height:size,
 		top:random,
 		left:-1 * size,
-		//backgroundColor:color
+		//backgroundColor:color,
 		backgroundImage:image
 	});
 	
@@ -65,32 +65,31 @@ module.exports = function(args) {
 	
 	function move(left) {
 		
-		if (enemy.left > fish.left - size && enemy.left < fish.left + fish.width && enemy.top > fish.top - size && enemy.top < fish.top + fish.height) {
+		enemy.animate({
+			left: left + speed,
+			duration:10
+		}, function() {
 			
-			if (enemy.width < fish.width) {
-				enemy.parent.remove(enemy);
-				Ti.API.info('enemy down!');
-				eat_function(level);
-			} else {
-				lose_function();
+			enemy.left = left + speed;
+			
+			if (enemy.left > fish.left - size && enemy.left < fish.left + fish.width && enemy.top > fish.top - size + 5 && enemy.top < fish.top + fish.height - 5) {
+				if (enemy.width < fish.width) {
+					Ti.API.info('enemy down!');
+					enemy.parent.remove(enemy);
+					eat_function(level);
+				} else {
+					lose_function();
+				}
 			}
 			
-		} else {
-		
-			enemy.animate({
-				left: left + speed,
-				duration:10
-			}, function() {
-				enemy.left = left + speed;
-				if (enemy.left > Ti.Platform.displayCaps.platformWidth || enemy.left < -1 * size - 1) {
-					enemy.parent.remove(enemy);
-					Ti.API.info('enemy out');
-				} else {
-					move(left + speed);
-				}
-			});
+			if (enemy.left > Ti.Platform.displayCaps.platformWidth || enemy.left < -1 * size - 1) {
+				enemy.parent.remove(enemy);
+				Ti.API.info('enemy out');
+			} else {
+				move(left + speed);
+			}
 			
-		}
+		});
 		
 	}
 	

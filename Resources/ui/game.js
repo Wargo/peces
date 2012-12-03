@@ -18,7 +18,20 @@ module.exports = function() {
 	});
 	win.add(close);
 	close.addEventListener('click', function() {
-		win.close();
+		var dialog = Ti.UI.createAlertDialog({
+			title:'Cerrar',
+			message:'¿Seguro que deseas abandonar la partida?',
+			buttonNames:['Sí', 'No'],
+			cancel:1
+		});
+		
+		dialog.show();
+		
+		dialog.addEventListener('click', function(e) {
+			if (e.index === 0) {
+				win.close();
+			}
+		});
 	});
 	
 	points = Ti.UI.createLabel({
@@ -40,12 +53,23 @@ module.exports = function() {
 	}
 	
 	function eatFunction(level) {
+		// var audio = Ti.Media.createAudioPlayer({
+			// url:'ui/sounds/rot.mp3'
+		// });
+		// audio.start();
+		
+		var audio = Ti.Media.createSound({
+			url:'ui/sounds/rot.mp3',
+			time:5
+		});
+		audio.play();
+		
 		var currentpoints = parseInt(points.text) + 1;
 		if (currentpoints == 10) {
 			fish.width = parseInt(fish.width) + 10;
 			fish.height = parseInt(fish.height) + 10;
 			points.text = 0;
-			if (fish.width == 60) {
+			if (fish.width == 90) {
 				alert('Win!');
 				win.close();
 			}
@@ -60,7 +84,7 @@ module.exports = function() {
 		var random = Math.floor(Math.random() * 5);
 		
 		var enemy = new MyEnemy({
-			level:random,
+			level:0,
 			fish:fish,
 			cb_lose:loseFunction,
 			cb_eat:eatFunction
@@ -68,7 +92,7 @@ module.exports = function() {
 		
 		win.add(enemy);
 		
-	}, 500);
+	}, 800);
 	
 	win.addEventListener('close', function() {
 		clearInterval(interval);

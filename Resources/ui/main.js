@@ -17,25 +17,48 @@ module.exports = function() {
 	
 	var startButton = Ti.UI.createButton({
 		title:'Start',
-		left:20,
+		right:20,
 		bottom:20,
 		backgroundImage:'none',
 		color:'yellow',
-		font:{fontFamily:'Noteworthy', fontSize:40, fontWeight:'bold'}
+		font:{fontFamily:'Noteworthy', fontSize:40, fontWeight:'bold'},
+		opacity:0
 	});
-	
 	win.add(startButton);
 	
 	var you = Ti.UI.createImageView({
 		image:'ui/images/you.png',
-		right:0,
-		top:10
+		left:10,
+		top:10,
+		opacity:0,
+		height:300,
+		width:264
 	});
 	win.add(you);
+	
+	var enemies = Ti.UI.createImageView({
+		image:'ui/images/enemies.png',
+		height:230,
+		width:198,
+		right:10,
+		top:10,
+		opacity:0
+	});
+	win.add(enemies);
 	
 	startButton.addEventListener('click', function() {
 		MyGame().open({opacity:1});
 	});
+	
+	setTimeout(function() {
+		you.animate({opacity:1});
+	}, 1000);
+	setTimeout(function() {
+		enemies.animate({opacity:1});
+	}, 3000);
+	setTimeout(function() {
+		startButton.animate({opacity:1});
+	}, 5000);
 	
 	return win;
 	

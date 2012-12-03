@@ -50,10 +50,14 @@ module.exports = function() {
 	function loseFunction() {
 		var dead = Ti.Media.createSound({
 			url:'ui/sounds/eructos.mp3',
-			time:30
+			time:30.5
 		});
 		dead.play();
-		alert('Has perdido!');
+		Ti.UI.createAlertDialog({
+			title:'¡Has perdido!',
+			message:'¡Te han comido! Inténtalo de nuevo',
+			ok:'Vale'
+		}).show();
 		win.close();
 	}
 	
@@ -75,7 +79,11 @@ module.exports = function() {
 			fish.height = parseInt(fish.height) + 10;
 			points.text = 0;
 			if (fish.width == 90) {
-				alert('Win!');
+				Ti.UI.createAlertDialog({
+					title:'¡Victoria!',
+					message:'¡Enhorabuena! Te has comido a todos los peces del océano, ¡GORD@!',
+					ok:'Vale'
+				}).show();
 				win.close();
 			}
 		} else {

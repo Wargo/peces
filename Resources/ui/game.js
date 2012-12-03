@@ -53,14 +53,10 @@ module.exports = function() {
 	}
 	
 	function eatFunction(level) {
-		// var audio = Ti.Media.createAudioPlayer({
-			// url:'ui/sounds/rot.mp3'
-		// });
-		// audio.start();
 		
 		var audio = Ti.Media.createSound({
 			url:'ui/sounds/rot.mp3',
-			time:5
+			time:1
 		});
 		audio.play();
 		

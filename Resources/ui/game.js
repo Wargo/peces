@@ -48,16 +48,25 @@ module.exports = function() {
 	win.add(fish);
 	
 	function loseFunction() {
+		var dead = Ti.Media.createSound({
+			url:'ui/sounds/eructos.mp3',
+			time:30
+		});
+		dead.play();
 		alert('Has perdido!');
 		win.close();
 	}
 	
+	var audio = Ti.Media.createSound({
+		url:'ui/sounds/rot.mp3',
+		time:1
+	});
+	audio.play();
+	audio.stop();
+	
 	function eatFunction(level) {
 		
-		var audio = Ti.Media.createSound({
-			url:'ui/sounds/rot.mp3',
-			time:1
-		});
+		audio.time = 1;
 		audio.play();
 		
 		var currentpoints = parseInt(points.text) + 1;
@@ -80,7 +89,7 @@ module.exports = function() {
 		var random = Math.floor(Math.random() * 5);
 		
 		var enemy = new MyEnemy({
-			level:0,
+			level:random,
 			fish:fish,
 			cb_lose:loseFunction,
 			cb_eat:eatFunction

@@ -66,12 +66,12 @@ module.exports = function() {
 		time:1
 	});
 	audio.play();
-	audio.stop();
+	audio.pause();
 	
 	function eatFunction(level) {
 		
-		audio.time = 1;
 		audio.play();
+		audio.time = 1;
 		
 		var currentpoints = parseInt(points.text) + 1;
 		if (currentpoints == 10) {
@@ -97,10 +97,11 @@ module.exports = function() {
 		var random = Math.floor(Math.random() * 5);
 		
 		var enemy = new MyEnemy({
-			level:random,
+			level:0,
 			fish:fish,
 			cb_lose:loseFunction,
-			cb_eat:eatFunction
+			cb_eat:eatFunction,
+			win:win
 		});
 		
 		win.add(enemy);

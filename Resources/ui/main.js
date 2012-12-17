@@ -58,7 +58,7 @@ module.exports = function() {
 	}, 3000);
 	setTimeout(function() {
 		startButton.animate({opacity:1});
-	}, 5000);
+	}, 500);
 	
 	return win;
 	

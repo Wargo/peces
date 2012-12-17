@@ -43,5 +43,7 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules/>
+    <modules>
+        <module platform="iphone" version="0.9">ti.box2d</module>
+    </modules>
 </ti:app>

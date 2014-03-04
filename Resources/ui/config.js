@@ -113,7 +113,7 @@ module.exports = function() {
 	
 	return win;
 	
-}
+};
 
 
 			switch (animate) {

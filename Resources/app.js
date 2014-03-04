@@ -1,16 +1,15 @@
-/*
 (function() {
 	
 	var Mods = require('/modules');
 	
-	var Main = require(Mods.game);
+	//var Main = require(Mods.game);
+	var Main = require(Mods.main);
 	
 	new Main().open();
 	
 })();
-*/
 
-
+/*
 var Mods = require('/modules');
 var $$ = require(Mods.styles);
 
@@ -141,3 +140,4 @@ var loadEnemy = require(Mods.enemy);
 	world.setGravity(0, 0);
 	
 	world.start();
+	*/

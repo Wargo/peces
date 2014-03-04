@@ -8,7 +8,7 @@ var MyEnemy = require(Mods.enemy);
 module.exports = function() {
 	
 	var win = Ti.UI.createWindow($$.win);
-	win.opacity = 0;
+	win.opacity = 1;
 	win.backgroundImage = 'ui/images/bg.jpg';
 	
 	var close = Ti.UI.createButton({
@@ -97,7 +97,7 @@ module.exports = function() {
 		var random = Math.floor(Math.random() * 5);
 		
 		var enemy = new MyEnemy({
-			level:0,
+			level:random,
 			fish:fish,
 			cb_lose:loseFunction,
 			cb_eat:eatFunction,
@@ -114,4 +114,4 @@ module.exports = function() {
 	
 	return win;
 	
-}
+};

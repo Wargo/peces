@@ -2,11 +2,11 @@
 module.exports = {
 	
 	main:'ui/main',
-	game:'ui/game2',
+	game:'ui/game',
 	
 	styles:'ui/styles/iphone',
 	
 	fish:'ui/elements/fish',
-	enemy:'ui/elements/enemy1'
+	enemy:'ui/elements/enemy'
 	
-}
+};

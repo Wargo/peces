@@ -15,7 +15,7 @@ module.exports = function(args) {
 	
 	var size = 25 + level * 10;
 	var speed = 2 + level * 0.5;
-	speed *= 1000;
+	//speed *= 1000;
 	
 	if (Ti.Platform.osname == 'ipad') {
 		speed *= 2;
@@ -52,7 +52,7 @@ module.exports = function(args) {
 		width:size,
 		height:size,
 		top:random,
-		left:-1 * size,
+		//left:-1 * size,
 		//backgroundColor:color,
 		backgroundImage:image
 	});
@@ -74,17 +74,17 @@ module.exports = function(args) {
 			break;
 	}
 	
-	//move(enemy.left);
+	move(enemy.left);
 	
-	enemy.animate({left:end, duration:5000, curve:Ti.UI.ANIMATION_CURVE_LINEAR}, function() {
-		parentWin.remove(enemy);
-		enemy = null;
-		Ti.API.info('enemy out');
-	});
+	// enemy.animate({left:end, duration:5000, curve:Ti.UI.ANIMATION_CURVE_LINEAR}, function() {
+		// parentWin.remove(enemy);
+		// enemy = null;
+		// Ti.API.info('enemy out');
+	// });
 	
 	var interval = setInterval(function() {
 		//Ti.API.info(enemy.animatedCenterPoint);
-		Ti.API.info(JSON.stringify(enemy.rect));
+		//Ti.API.info(JSON.stringify(enemy.rect));
 	}, 100);
 	
 	function move(left) {
@@ -93,18 +93,25 @@ module.exports = function(args) {
 			return;
 		}
 		
-		enemy.animate({
-			left: left + speed,
-			duration:10000
-		}, function() {
+		// enemy.animate({
+			// left: left + speed,
+			// duration:10000
+		// }, function() {
 			
 			if (enemy === null) {
 				return;
 			}
 			
-			enemy._left = left + speed;
+			enemy.left = left + speed;
+			Ti.API.info('left: ' + enemy.left);
+			Ti.API.info('top: ' + enemy.top);
+			Ti.API.info('mi left: ' + fish.left);
+			Ti.API.info('mi top: ' + fish.top);
 			
-			if (enemy._left > fish.left - size && enemy._left < fish.left + fish.width && enemy.top > fish.top - size + 5 && enemy.top < fish.top + fish.height - 5) {
+			if (enemy.left > fish.left - size &&
+				enemy.left < fish.left + fish.width &&
+				enemy.top > fish.top - size + 5 &&
+				enemy.top < fish.top + fish.height - 5) {
 				if (enemy.width < fish.width) {
 					Ti.API.info('enemy down!');
 					//enemy.parent.remove(enemy);
@@ -116,7 +123,7 @@ module.exports = function(args) {
 				return;
 			}
 			
-			if (enemy._left > totalWidth || enemy._left < -1 * size - 5) {
+			if (enemy.left > totalWidth || enemy.left < -1 * size - 5) {
 				//enemy.parent.remove(enemy);
 				args.win.remove(enemy);
 				Ti.API.info('enemy out');
@@ -126,10 +133,10 @@ module.exports = function(args) {
 				//}, 10);
 			}
 			
-		});
+		// });
 		
 	}
 	
 	return enemy;
 	
-}
+};

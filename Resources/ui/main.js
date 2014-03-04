@@ -58,8 +58,8 @@ module.exports = function() {
 	}, 3000);
 	setTimeout(function() {
 		startButton.animate({opacity:1});
-	}, 500);
+	}, 5000);
 	
 	return win;
 	
-}
+};

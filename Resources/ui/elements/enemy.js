@@ -104,9 +104,9 @@ module.exports = function(args) {
 			
 			enemy.left = left + speed;
 			Ti.API.info('left: ' + enemy.left);
-			Ti.API.info('top: ' + enemy.top);
-			Ti.API.info('mi left: ' + fish.left);
-			Ti.API.info('mi top: ' + fish.top);
+			// Ti.API.info('top: ' + enemy.top);
+			// Ti.API.info('mi left: ' + fish.left);
+			// Ti.API.info('mi top: ' + fish.top);
 			
 			if (enemy.left > fish.left - size &&
 				enemy.left < fish.left + fish.width &&
@@ -128,9 +128,9 @@ module.exports = function(args) {
 				args.win.remove(enemy);
 				Ti.API.info('enemy out');
 			} else {
-				//setTimeout(function() {
+				setTimeout(function() {
 					move(left + speed);
-				//}, 10);
+				}, 10);
 			}
 			
 		// });
